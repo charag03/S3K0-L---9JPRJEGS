@@ -65,19 +65,19 @@ class LoginFrame(tk.Frame):
         # 2. Check roles and call the EXACT methods in HospitalMaster
 
         patients_creds = pd.DataFrame({"Email": readerHandlers.PatientReader("../Data/patients.csv").getPatientEmail(), "Password" : readerHandlers.PatientReader("../Data/patients.csv").getPatientPassword()})
-        patients = readerHandlers.File_reader("../Data/patients.csv").read_file()
+        patients = readerHandlers.File_reader("../Data/patients.csv").data
 
         doctors_creds = pd.DataFrame({"Email": readerHandlers.DocReader("../Data/doctors.csv").getDoctorEmail(), "Password" : readerHandlers.DocReader("../Data/doctors.csv").getDoctorPassword()})
-        doctors = readerHandlers.File_reader("../Data/doctors.csv").read_file()
+        doctors = readerHandlers.File_reader("../Data/doctors.csv").data
 
         inv_managers_creds= pd.DataFrame({"Email": readerHandlers.InvManagerReader("../Data/inventory_managers.csv").getInvManagerEmail(), "Password" : readerHandlers.InvManagerReader("../Data/inventory_managers.csv").getInvManagerPassword()})
-        inv_managers = readerHandlers.File_reader("../Data/inventory_managers.csv").read_file()
+        inv_managers = readerHandlers.File_reader("../Data/inventory_managers.csv").data
 
         pharmacists_creds = pd.DataFrame({"Email": readerHandlers.PharmacistReader("../Data/pharmacists.csv").getPharmacistEmail(), "Password" : readerHandlers.PharmacistReader("../Data/pharmacists.csv").getPharmacistPassword()})
-        pharmacists = readerHandlers.File_reader("../Data/pharmacists.csv").read_file()
+        pharmacists = readerHandlers.File_reader("../Data/pharmacists.csv").data
 
         hr_managers_creds = pd.DataFrame({"Email": readerHandlers.HrManagerReader("../Data/hr_managers.csv").getHrManagerEmail(), "Password" : readerHandlers.HrManagerReader("../Data/hr_managers.csv").getHrManagerPassword()})
-        hr_managers = readerHandlers.File_reader("../Data/hr_managers.csv").read_file()
+        hr_managers = readerHandlers.File_reader("../Data/hr_managers.csv").data
 
         if recognizer.is_patient(patients_creds, email, password) == 1:
             # Matches your Master method: show_patient_portal()

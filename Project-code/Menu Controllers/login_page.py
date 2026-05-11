@@ -1,27 +1,29 @@
-import tkinter as tk
 from tkinter import messagebox
+from Reader import readerHandlers
+import tkinter as tk
 import recognizer
 import pandas as pd
 
+
 #patients
-patients = pd.read_csv('archive (1)/patients.csv')
-patients_creds = patients[['email', 'password']]
+# patients = pd.read_csv('../Data/patients.csv')
+# patients_creds = patients[['email', 'password']]
 
-#doctors
-doctors = pd.read_csv('archive (1)/doctors.csv')
-doctors_creds = doctors[['email', 'password']]
+# doctors
+# doctors = pd.read_csv('../Data/doctors.csv')
+# doctors_creds = doctors[['email', 'password']]
 
-#inventory managers
-inv_managers = pd.read_csv('archive (1)/inventory_managers.csv')
-inv_managers_creds = inv_managers[['email', 'password']]
+# inventory managers
+# inv_managers = pd.read_csv('../Data/inventory_managers.csv')
+# inv_managers_creds = inv_managers[['email', 'password']]
 
-#HR managers
-hr_managers = pd.read_csv('archive (1)/hr_managers.csv')
-hr_managers_creds = hr_managers[['email', 'password']]
+# HR managers
+# hr_managers = pd.read_csv('../Data/hr_managers.csv')
+# hr_managers_creds = hr_managers[['email', 'password']]
 
-#pharmacists
-pharmacists = pd.read_csv('archive (1)/pharmacists.csv')
-pharmacists_creds = pharmacists[['email', 'password']]
+# pharmacists
+# pharmacists = pd.read_csv('../Data/pharmacists.csv')
+# pharmacists_creds = pharmacists[['email', 'password']]
 
 
 
@@ -61,6 +63,21 @@ class LoginFrame(tk.Frame):
 
         # 1. Access the dataframes from the global scope (since you imported them in this file)
         # 2. Check roles and call the EXACT methods in HospitalMaster
+
+        patients_creds = pd.DataFrame({"Email": readerHandlers.PatientReader("../Data/patients.csv").getPatientEmail(), "Password" : readerHandlers.PatientReader("../Data/patients.csv").getPatientPassword()})
+        patients = readerHandlers.File_reader("../Data/patients.csv").data
+
+        doctors_creds = pd.DataFrame({"Email": readerHandlers.DocReader("../Data/doctors.csv").getDoctorEmail(), "Password" : readerHandlers.DocReader("../Data/doctors.csv").getDoctorPassword()})
+        doctors = readerHandlers.File_reader("../Data/doctors.csv").data
+
+        inv_managers_creds= pd.DataFrame({"Email": readerHandlers.InvManagerReader("../Data/inventory_managers.csv").getInvManagerEmail(), "Password" : readerHandlers.InvManagerReader("../Data/inventory_managers.csv").getInvManagerPassword()})
+        inv_managers = readerHandlers.File_reader("../Data/inventory_managers.csv").data
+
+        pharmacists_creds = pd.DataFrame({"Email": readerHandlers.PharmacistReader("../Data/pharmacists.csv").getPharmacistEmail(), "Password" : readerHandlers.PharmacistReader("../Data/pharmacists.csv").getPharmacistPassword()})
+        pharmacists = readerHandlers.File_reader("../Data/pharmacists.csv").data
+
+        hr_managers_creds = pd.DataFrame({"Email": readerHandlers.HrManagerReader("../Data/hr_managers.csv").getHrManagerEmail(), "Password" : readerHandlers.HrManagerReader("../Data/hr_managers.csv").getHrManagerPassword()})
+        hr_managers = readerHandlers.File_reader("../Data/hr_managers.csv").data
 
         if recognizer.is_patient(patients_creds, email, password) == 1:
             # Matches your Master method: show_patient_portal()

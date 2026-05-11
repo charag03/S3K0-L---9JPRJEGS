@@ -1,10 +1,12 @@
 from __future__ import annotations
-from login import LoginFrame
-from patient_dashboard import PatientPortalFrame
+from login_page import LoginFrame
+from patient_page import PatientPortalFrame
 from doctor_page import DoctorPortalFrame
 from pharmacist_page import PharmacistPortalFrame
 from inventory_manager_page import InventoryManagerPortalFrame
 from hr_manager_page import HRManagerPortalFrame
+from Reader import readerHandlers
+
 import tkinter as tk
 
 APP_BACKGROUND = "#F7F7F5"

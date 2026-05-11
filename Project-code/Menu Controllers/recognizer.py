@@ -3,9 +3,8 @@ import tkinter as tk
 from tkinter import messagebox
 
 
-def is_patient(patients_creds, patient_email, patient_password):
-
-    for i in range(patients_creds.shape[0]):
+def is_patient(patients_creds : pd.DataFrame, patient_email: str, patient_password: str):
+    for i in range(len(patients_creds)):
         if patient_email == patients_creds.iloc[i, 0] and patient_password == patients_creds.iloc[i, 1]:
             messagebox.showinfo("Success", "Welcome back patient!")
             return 1

@@ -229,3 +229,31 @@ class TreatmentReader(File_reader):
 
     def getTreatmentDate(self)->pd.Series:
         return self.data.iloc[:,5]
+    
+class SecretaryReader(File_reader):
+    def __init__(self, file):
+        super().__init__(file)
+
+    def getSecretaryId(self) ->pd.Series:
+        return self.data.iloc[:,0]
+    
+    def getSecretaryFirstName(self) ->pd.Series:
+        return self.data.iloc[:,1]
+    
+    def getSecretaryLastName(self) ->pd.Series:
+        return self.data.iloc[:,2]
+    
+    def getSecretaryPhone(self) ->pd.Series:
+        return self.data.iloc[:,3]
+    
+    def getSecretaryExperience(self) ->pd.Series:
+        return self.data.iloc[:,4]
+    
+    def getSecretaryBranch(self) ->pd.Series:
+        return self.data.iloc[:,5]
+    
+    def getSecretaryEmail(self) ->pd.Series:
+        return self.data.iloc[:,6]
+    
+    def getSecretaryPassword(self) ->pd.Series:
+        return self.data.iloc[:,7]

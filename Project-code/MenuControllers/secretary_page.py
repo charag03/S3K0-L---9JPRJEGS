@@ -3,6 +3,7 @@ import json
 import customtkinter as ctk
 from pathlib import Path
 from tkinter import messagebox
+from MenuControllers.centralMenu import CentralMenu
 
 BG_COLOR = "#F8F9FA"
 CARD_WHITE = "#FFFFFF"
@@ -60,26 +61,6 @@ class SecretaryPortalFrame(ctk.CTkFrame):
             self.controller.show_login(user_name="")
 
 
-class SecretaryCentralMenu(ctk.CTkFrame):
+class SecretaryCentralMenu(CentralMenu):
     def __init__(self, parent, portal):
-        super().__init__(parent, fg_color="transparent")
-        
-        user = getattr(portal.controller, "current_user_name", "Secretary")
-        ctk.CTkLabel(self, text=f"Welcome,  {user}", font=ctk.CTkFont(size=28, weight="bold"), text_color="#3D59AB").pack(pady=(20, 10))
-    
-        grid_frame = ctk.CTkFrame(self, fg_color="transparent")
-        grid_frame.pack(expand=True)
-
-        
-        self.create_tile(grid_frame, "Account statement Issuance", "📜", lambda: messagebox.showinfo("Info", "Coming soon :)"), 0, 0)
-        self.create_tile(grid_frame, "Surgery Scheduling", "🕙", lambda: messagebox.showinfo("Info", "Coming soon :)"), 0, 1)
-        self.create_tile(grid_frame, "Profile Management", "👤", lambda: messagebox.showinfo("Info", "Coming soon :)"), 1, 0)
-       
-
-    def create_tile(self, master, text, icon, command, row, col):
-        tile = ctk.CTkButton(
-            master, text=f"{icon}\n\n{text}", width=250, height=200, corner_radius=20,
-            fg_color=CARD_WHITE, text_color="#3D59AB", border_width=1, border_color="#104E8B",
-            hover_color="#87CEFA", font=ctk.CTkFont(size=16, weight="bold"), command=command
-        )
-        tile.grid(row=row, column=col, padx=15, pady=15)
+        super().__init__(parent, portal,user_t="SECRETARY")

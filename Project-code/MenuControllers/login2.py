@@ -1,7 +1,7 @@
 import customtkinter as ctk
-from MenuControllers2.Reader import readerHandlers
+from MenuControllers.Reader import readerHandlers
 from tkinter import messagebox
-import MenuControllers2.recognizer as recognizer
+import MenuControllers.recognizer as recognizer
 import pandas as pd
 import tkinter as tk
 

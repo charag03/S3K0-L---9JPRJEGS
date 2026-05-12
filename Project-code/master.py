@@ -1,11 +1,11 @@
 from __future__ import annotations
-from MenuControllers2.login2 import LoginFrame
-from MenuControllers2.patient_dashboard2 import PatientPortalFrame
-from MenuControllers2.doctor_page2 import DoctorPortalFrame
-from MenuControllers2.pharmacist_page2 import PharmacistPortalFrame
-from MenuControllers2.inventory_manager_page2 import InventoryManagerPortalFrame
-from MenuControllers2.hr_manager_page2 import HRManagerPortalFrame
-from MenuControllers2.secretary_page2 import SecretaryPortalFrame
+from MenuControllers.login2 import LoginFrame
+from MenuControllers.patient_dashboard2 import PatientPortalFrame
+from MenuControllers.doctor_page2 import DoctorPortalFrame
+from MenuControllers.pharmacist_page2 import PharmacistPortalFrame
+from MenuControllers.inventory_manager_page2 import InventoryManagerPortalFrame
+from MenuControllers.hr_manager_page2 import HRManagerPortalFrame
+from MenuControllers.secretary_page2 import SecretaryPortalFrame
 import tkinter as tk
 
 APP_BACKGROUND = "#F7F7F5"

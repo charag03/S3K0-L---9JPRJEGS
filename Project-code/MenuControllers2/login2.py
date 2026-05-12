@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from MenuControllers2.Reader import readerHandlers
 from tkinter import messagebox
-import MenuControllers2.recognizer
+import MenuControllers2.recognizer as recognizer
 import pandas as pd
 import tkinter as tk
 
@@ -128,23 +128,23 @@ class LoginFrame(ctk.CTkFrame):
         email = self.entry_user.get()
         password = self.entry_pass.get()
 
-        patients_creds = pd.DataFrame({"Email": readerHandlers.PatientReader("../Data/patients.csv").getPatientEmail(), "Password" : readerHandlers.PatientReader("../Data/patients.csv").getPatientPassword()})
-        patients = readerHandlers.File_reader("../Data/patients.csv").data
+        patients_creds = pd.DataFrame({"Email": readerHandlers.PatientReader("./Data/patients.csv").getPatientEmail(), "Password" : readerHandlers.PatientReader("./Data/patients.csv").getPatientPassword()})
+        patients = readerHandlers.File_reader("./Data/patients.csv").data
 
-        doctors_creds = pd.DataFrame({"Email": readerHandlers.DocReader("../Data/doctors.csv").getDoctorEmail(), "Password" : readerHandlers.DocReader("../Data/doctors.csv").getDoctorPassword()})
-        doctors = readerHandlers.File_reader("../Data/doctors.csv").data
+        doctors_creds = pd.DataFrame({"Email": readerHandlers.DocReader("./Data/doctors.csv").getDoctorEmail(), "Password" : readerHandlers.DocReader("./Data/doctors.csv").getDoctorPassword()})
+        doctors = readerHandlers.File_reader("./Data/doctors.csv").data
 
-        inv_managers_creds= pd.DataFrame({"Email": readerHandlers.InvManagerReader("../Data/inventory_managers.csv").getInvManagerEmail(), "Password" : readerHandlers.InvManagerReader("../Data/inventory_managers.csv").getInvManagerPassword()})
-        inv_managers = readerHandlers.File_reader("../Data/inventory_managers.csv").data
+        inv_managers_creds= pd.DataFrame({"Email": readerHandlers.InvManagerReader("./Data/inventory_managers.csv").getInvManagerEmail(), "Password" : readerHandlers.InvManagerReader("./Data/inventory_managers.csv").getInvManagerPassword()})
+        inv_managers = readerHandlers.File_reader("./Data/inventory_managers.csv").data
 
-        pharmacists_creds = pd.DataFrame({"Email": readerHandlers.PharmacistReader("../Data/pharmacists.csv").getPharmacistEmail(), "Password" : readerHandlers.PharmacistReader("../Data/pharmacists.csv").getPharmacistPassword()})
-        pharmacists = readerHandlers.File_reader("../Data/pharmacists.csv").data
+        pharmacists_creds = pd.DataFrame({"Email": readerHandlers.PharmacistReader("./Data/pharmacists.csv").getPharmacistEmail(), "Password" : readerHandlers.PharmacistReader("./Data/pharmacists.csv").getPharmacistPassword()})
+        pharmacists = readerHandlers.File_reader("./Data/pharmacists.csv").data
 
-        hr_managers_creds = pd.DataFrame({"Email": readerHandlers.HrManagerReader("../Data/hr_managers.csv").getHrManagerEmail(), "Password" : readerHandlers.HrManagerReader("../Data/hr_managers.csv").getHrManagerPassword()})
-        hr_managers = readerHandlers.File_reader("../Data/hr_managers.csv").data
+        hr_managers_creds = pd.DataFrame({"Email": readerHandlers.HrManagerReader("./Data/hr_managers.csv").getHrManagerEmail(), "Password" : readerHandlers.HrManagerReader("./Data/hr_managers.csv").getHrManagerPassword()})
+        hr_managers = readerHandlers.File_reader("./Data/hr_managers.csv").data
 
-        secretaries_creds = pd.DataFrame({"Email": readerHandlers.SecretaryReader("../Data/secretaries.csv").getSecretaryEmail(), "Password" : readerHandlers.SecretaryReader("../Data/secretaries.csv").getSecretaryPassword()})
-        secretaries = readerHandlers.File_reader("../Data/secretaries.csv").data
+        secretaries_creds = pd.DataFrame({"Email": readerHandlers.SecretaryReader("./Data/secretaries.csv").getSecretaryEmail(), "Password" : readerHandlers.SecretaryReader("./Data/secretaries.csv").getSecretaryPassword()})
+        secretaries = readerHandlers.File_reader("./Data/secretaries.csv").data
 
         if recognizer.is_patient(patients_creds, email, password) == 1 :
             user_name = self.authenticate(patients, email, password)

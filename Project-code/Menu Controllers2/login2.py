@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from Reader import readerHandlers
 from tkinter import messagebox
 import recognizer
 import pandas as pd
@@ -8,29 +9,29 @@ import tkinter as tk
 ctk.set_appearance_mode("light") 
 ctk.set_default_color_theme("blue")
 
-#patients
-patients = pd.read_csv('archive (1)/patients.csv')
-patients_creds = patients[['email', 'password']]
+# #patients
+# patients = pd.read_csv('archive (1)/patients.csv')
+# patients_creds = patients[['email', 'password']]
 
-#doctors
-doctors = pd.read_csv('archive (1)/doctors.csv')
-doctors_creds = doctors[['email', 'password']]
+# #doctors
+# doctors = pd.read_csv('archive (1)/doctors.csv')
+# doctors_creds = doctors[['email', 'password']]
 
-#inventory managers
-inv_managers = pd.read_csv('archive (1)/inventory_managers.csv')
-inv_managers_creds = inv_managers[['email', 'password']]
+# #inventory managers
+# inv_managers = pd.read_csv('archive (1)/inventory_managers.csv')
+# inv_managers_creds = inv_managers[['email', 'password']]
 
-#HR managers
-hr_managers = pd.read_csv('archive (1)/hr_managers.csv')
-hr_managers_creds = hr_managers[['email', 'password']]
+# #HR managers
+# hr_managers = pd.read_csv('archive (1)/hr_managers.csv')
+# hr_managers_creds = hr_managers[['email', 'password']]
 
-#pharmacists
-pharmacists = pd.read_csv('archive (1)/pharmacists.csv')
-pharmacists_creds = pharmacists[['email', 'password']]
+# #pharmacists
+# pharmacists = pd.read_csv('archive (1)/pharmacists.csv')
+# pharmacists_creds = pharmacists[['email', 'password']]
 
-#secretary
-secretaries = pd.read_csv('archive (1)/secretaries.csv')
-secretaries_creds = secretaries[['email', 'password']]
+# #secretary
+# secretaries = pd.read_csv('archive (1)/secretaries.csv')
+# secretaries_creds = secretaries[['email', 'password']]
 
 
 class LoginFrame(ctk.CTkFrame):
@@ -38,14 +39,11 @@ class LoginFrame(ctk.CTkFrame):
         super().__init__(parent, corner_radius=15)
         self.controller = controller
         self.configure(fg_color="#FFFFFF") 
-
        
         self.inner_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.inner_frame.place(relx=0.5, rely=0.5, anchor="center")
 
-
         try:
-            
             self.logo_img = tk.PhotoImage(file="archive (1)/app_icon.png")
             self.logo_img = self.logo_img.subsample(2, 2)
             self.image_label = ctk.CTkLabel(
@@ -129,6 +127,24 @@ class LoginFrame(ctk.CTkFrame):
     def handle_login(self):
         email = self.entry_user.get()
         password = self.entry_pass.get()
+
+        patients_creds = pd.DataFrame({"Email": readerHandlers.PatientReader("../Data/patients.csv").getPatientEmail(), "Password" : readerHandlers.PatientReader("../Data/patients.csv").getPatientPassword()})
+        patients = readerHandlers.File_reader("../Data/patients.csv").data
+
+        doctors_creds = pd.DataFrame({"Email": readerHandlers.DocReader("../Data/doctors.csv").getDoctorEmail(), "Password" : readerHandlers.DocReader("../Data/doctors.csv").getDoctorPassword()})
+        doctors = readerHandlers.File_reader("../Data/doctors.csv").data
+
+        inv_managers_creds= pd.DataFrame({"Email": readerHandlers.InvManagerReader("../Data/inventory_managers.csv").getInvManagerEmail(), "Password" : readerHandlers.InvManagerReader("../Data/inventory_managers.csv").getInvManagerPassword()})
+        inv_managers = readerHandlers.File_reader("../Data/inventory_managers.csv").data
+
+        pharmacists_creds = pd.DataFrame({"Email": readerHandlers.PharmacistReader("../Data/pharmacists.csv").getPharmacistEmail(), "Password" : readerHandlers.PharmacistReader("../Data/pharmacists.csv").getPharmacistPassword()})
+        pharmacists = readerHandlers.File_reader("../Data/pharmacists.csv").data
+
+        hr_managers_creds = pd.DataFrame({"Email": readerHandlers.HrManagerReader("../Data/hr_managers.csv").getHrManagerEmail(), "Password" : readerHandlers.HrManagerReader("../Data/hr_managers.csv").getHrManagerPassword()})
+        hr_managers = readerHandlers.File_reader("../Data/hr_managers.csv").data
+
+        secretaries_creds = pd.DataFrame({"Email": readerHandlers.SecretaryReader("../Data/secretaries.csv").getSecretaryEmail(), "Password" : readerHandlers.SecretaryReader("../Data/secretaries.csv").getSecretaryPassword()})
+        secretaries = readerHandlers.File_reader("../Data/secretaries.csv").data
 
         if recognizer.is_patient(patients_creds, email, password) == 1 :
             user_name = self.authenticate(patients, email, password)

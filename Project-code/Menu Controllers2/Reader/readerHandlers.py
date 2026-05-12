@@ -2,7 +2,7 @@ from .file_reader import File_reader
 import pandas as pd
 
 class DocReader(File_reader):
-    def __init__(self, file)->None:
+    def __init__(self, file: str)->None:
         super().__init__(file)
 
     def getDoctorId(self) -> pd.Series:
@@ -33,7 +33,7 @@ class DocReader(File_reader):
         return self.data.iloc[:,8]
 
 class AppointmentReader(File_reader):
-    def __init__(self, file)->None:
+    def __init__(self, file : str)->None:
         super().__init__(file)
 
     def getAppointmentId(self) ->pd.Series:
@@ -59,7 +59,7 @@ class AppointmentReader(File_reader):
     
 
 class BillingReader(File_reader):
-    def __init__(self, file)->None:
+    def __init__(self, file : str)->None:
         super().__init__(file)
 
     def getBillId(self)->pd.Series:
@@ -85,7 +85,7 @@ class BillingReader(File_reader):
     
     
 class HrManagerReader(File_reader):
-    def __init__(self, file)->None:
+    def __init__(self, file :str)->None:
         super().__init__(file)
 
     def getHrManagerId(self)->pd.Series:
@@ -113,7 +113,7 @@ class HrManagerReader(File_reader):
         return self.data.iloc[:,7]
     
 class InvManagerReader(File_reader):
-    def __init__(self, file)->None:
+    def __init__(self, file :str)->None:
         super().__init__(file)
 
     def getInvManagerId(self)->pd.Series:
@@ -143,7 +143,7 @@ class InvManagerReader(File_reader):
 
 
 class PatientReader(File_reader):
-    def __init__(self, file)->None:
+    def __init__(self, file: str)->None:
         super().__init__(file)
 
     def getPatientId(self)->pd.Series:
@@ -183,7 +183,7 @@ class PatientReader(File_reader):
         return self.data.iloc[:,11]
 
 class PharmacistReader(File_reader):
-    def __init__(self, file)->None:
+    def __init__(self, file: str)->None:
         super().__init__(file)
 
     def getPharmacistId(self)->pd.Series:
@@ -231,7 +231,7 @@ class TreatmentReader(File_reader):
         return self.data.iloc[:,5]
     
 class SecretaryReader(File_reader):
-    def __init__(self, file):
+    def __init__(self, file:str):
         super().__init__(file)
 
     def getSecretaryId(self) ->pd.Series:

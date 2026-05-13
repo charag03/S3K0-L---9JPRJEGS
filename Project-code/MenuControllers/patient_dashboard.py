@@ -1,6 +1,7 @@
 from __future__ import annotations
 import customtkinter as ctk
 from tkinter import messagebox
+from MenuControllers.centralMenu import CentralMenu
 
 
 ctk.set_appearance_mode("Light")
@@ -36,7 +37,7 @@ class PatientPortalFrame(ctk.CTkFrame):
         self.container.grid_rowconfigure(0, weight=1)
 
         self.sub_pages = {
-            "menu": CentralMenu(self.container, self)}
+            "menu": PatientCentralMenu(self.container, self)}
         
         for sp in self.sub_pages.values():
             sp.grid(row=0, column=0, sticky="nsew")
@@ -65,35 +66,10 @@ class PatientPortalFrame(ctk.CTkFrame):
             except Exception as e:
                 messagebox.showerror("Error", f"Logout failed: {e}")
 
-class CentralMenu(ctk.CTkFrame):
+class PatientCentralMenu(CentralMenu):
     def __init__(self, parent, portal):
-        super().__init__(parent, fg_color="transparent")
+        super().__init__(parent, portal,user_t="PATIENT")
         
-        user = getattr(portal.controller, "current_user_name", "Patient")
-        ctk.CTkLabel(self, text=f"Welcome, {user}", font=ctk.CTkFont(size=28, weight="bold"), text_color="#3D59AB").pack(pady=(20, 10))
         ctk.CTkLabel(self, text="What would you like to do today?", font=ctk.CTkFont(size=16), text_color=TEXT_MUTE).pack(pady=(0, 40))
 
-        grid_frame = ctk.CTkFrame(self, fg_color="transparent")
-        grid_frame.pack(expand=True)
-
-        self.create_tile(grid_frame, "Schedule Appointment", "📆🩺", lambda: messagebox.showinfo("Info", "Coming soon :)"), 0, 0)
-        self.create_tile(grid_frame, "Bill Payment", "🧾💳", lambda: messagebox.showinfo("Info", "Coming soon :)"), 0, 1)
-        self.create_tile(grid_frame, "Manage Profile", "👤", lambda: messagebox.showinfo("Info", "Coming soon :)"), 1, 0)
-
-    def create_tile(self, master, text, icon, command, row, col):
-        tile = ctk.CTkButton(
-            master, 
-            text=f"{icon}\n\n{text}", 
-            width=250, 
-            height=200, 
-            corner_radius=20,
-            fg_color=CARD_WHITE,
-            text_color="#3D59AB",
-            border_width=1,
-            border_color="#104E8B",
-            hover_color="#87CEFA",
-            font=ctk.CTkFont(size=16, weight="bold"),
-            command=command
-        )
-        tile.grid(row=row, column=col, padx=15, pady=15)
 

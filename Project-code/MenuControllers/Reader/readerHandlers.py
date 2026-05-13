@@ -257,3 +257,34 @@ class SecretaryReader(File_reader):
     
     def getSecretaryPassword(self) ->pd.Series:
         return self.data.iloc[:,7]
+
+
+class NurseReader(File_reader):
+        def __init__(self, file:str):
+            super().__init__(file)
+
+        def getNurseId(self) ->pd.Series:
+            return self.data.iloc[:,0]
+    
+        def getNurseFirstName(self) ->pd.Series:
+            return self.data.iloc[:,1]
+    
+        def getNurseLastName(self) ->pd.Series:
+            return self.data.iloc[:,2]
+    
+        def getNursePhone(self) ->pd.Series:
+            return self.data.iloc[:,3]
+    
+        def getNurseExperience(self) ->pd.Series:
+            return self.data.iloc[:,4]
+    
+        def getNurseBranch(self) ->pd.Series:
+            return self.data.iloc[:,5]
+    
+        def getNurseEmail(self) ->pd.Series:
+            return self.data.iloc[:,6]
+    
+        def getNursePassword(self) ->pd.Series:
+            return self.data.iloc[:,7]
+
+

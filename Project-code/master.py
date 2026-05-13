@@ -1,4 +1,8 @@
 from __future__ import annotations
+import os
+
+os.chdir(os.path.dirname(os.path.abspath(__file__))) # Change the working directory to the script's directory
+
 from MenuControllers.login import LoginFrame
 from MenuControllers.patient_dashboard import PatientPortalFrame
 from MenuControllers.doctor_page import DoctorPortalFrame
